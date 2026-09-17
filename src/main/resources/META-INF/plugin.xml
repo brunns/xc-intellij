@@ -12,6 +12,8 @@
     <resource-bundle>messages.XcTaskBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <configurationType implementation="ing.brunn.xcintellij.run.XcConfigurationType"/>
+
         <applicationConfigurable
                 parentId="tools"
                 instance="ing.brunn.xcintellij.services.XcSettingsConfigurable"

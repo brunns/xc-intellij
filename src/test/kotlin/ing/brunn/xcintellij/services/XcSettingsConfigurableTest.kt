@@ -11,6 +11,14 @@ class XcSettingsConfigurableTest : BasePlatformTestCase() {
         configurable.createComponent() // Instantiates Swing components
     }
 
+    override fun tearDown() {
+        try {
+            XcSettingsState.instance.xcExecutablePath = "xc"
+        } finally {
+            super.tearDown()
+        }
+    }
+
     fun testIsModifiedWhenPathChanges() {
         val settings = XcSettingsState.instance
         settings.xcExecutablePath = "xc"

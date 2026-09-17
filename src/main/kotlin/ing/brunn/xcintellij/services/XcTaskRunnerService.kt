@@ -1,14 +1,15 @@
 package ing.brunn.xcintellij.services
 
-import com.intellij.execution.RunContentExecutor
-import com.intellij.execution.configurations.GeneralCommandLine
-import com.intellij.execution.process.ProcessHandlerFactory
-import com.intellij.execution.process.ProcessTerminatedListener
+import com.intellij.execution.ProgramRunnerUtil
+import com.intellij.execution.RunManager
+import com.intellij.execution.configurations.ConfigurationTypeUtil
+import com.intellij.execution.executors.DefaultRunExecutor
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import java.io.File
+import ing.brunn.xcintellij.run.XcConfigurationType
+import ing.brunn.xcintellij.run.XcRunConfiguration
 
 @Service(Service.Level.PROJECT)
 class XcTaskRunnerService(private val project: Project) {
@@ -17,29 +18,29 @@ class XcTaskRunnerService(private val project: Project) {
         taskName: String,
         parentDisposable: Disposable = project,
     ) {
-        val basePath = project.basePath ?: return
-        val workDir = File(basePath)
-        if (!workDir.exists()) return
+        val runManager = RunManager.getInstance(project)
+        val configType = ConfigurationTypeUtil.findConfigurationType(XcConfigurationType::class.java)
+        val factory = configType.configurationFactories.first()
 
-        val xcExecutable = XcSettingsState.instance.xcExecutablePath
+        val configName = "xc $taskName"
+
+        // Locate existing configuration or create a new one
+        val settings =
+            runManager.findConfigurationByName(configName)
+                ?: runManager.createConfiguration(configName, factory).also { newSettings ->
+                    (newSettings.configuration as XcRunConfiguration).taskName = taskName
+                    runManager.addConfiguration(newSettings)
+                }
+
+        runManager.selectedConfiguration = settings
 
         try {
-            val commandLine =
-                GeneralCommandLine(xcExecutable, taskName)
-                    .withWorkDirectory(workDir)
-
-            val processHandler =
-                ProcessHandlerFactory.getInstance()
-                    .createColoredProcessHandler(commandLine)
-
-            ProcessTerminatedListener.attach(processHandler)
-
-            RunContentExecutor(project, processHandler)
-                .withTitle("xc: $taskName")
-                .withActivateToolWindow(true)
-                .run()
+            ProgramRunnerUtil.executeConfiguration(
+                settings,
+                DefaultRunExecutor.getRunExecutorInstance(),
+            )
         } catch (e: Exception) {
-            thisLogger().warn("Failed to execute xc task '$taskName' with executable '$xcExecutable'", e)
+            thisLogger().warn("Failed to execute run configuration for task '$taskName'", e)
         }
     }
 }
