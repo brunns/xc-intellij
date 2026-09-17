@@ -14,11 +14,15 @@ RunDeps: async
 
 ### test
 
+Run tests
+
 ```sh
 ./gradlew test
 ```
 
 ### lint
+
+Code linting
 
 ```sh
 ./gradlew ktlintCheck
@@ -26,17 +30,23 @@ RunDeps: async
 
 ### verify
 
+Verify plugin
+
 ```sh
 ./gradlew verifyPlugin 
 ```
 
 ### format
 
+Format code
+
 ```sh
 ./gradlew ktlintFormat
 ```
 
 ### clean
+
+Clean
 
 ```sh
 ./gradlew clean
