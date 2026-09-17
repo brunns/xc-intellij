@@ -34,6 +34,12 @@ Requires: test, lint, verify
 ./gradlew ktlintFormat
 ```
 
+### clean
+
+```sh
+./gradlew clean
+```
+
 ### hello
 
 Test task

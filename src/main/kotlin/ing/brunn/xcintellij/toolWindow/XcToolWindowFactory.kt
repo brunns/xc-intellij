@@ -12,7 +12,6 @@ import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.JBList
 import com.intellij.ui.components.JBScrollPane
-import com.intellij.ui.content.ContentFactory
 import ing.brunn.xcintellij.services.XcTaskRunnerService
 import ing.brunn.xcintellij.services.XcTaskService
 import java.awt.BorderLayout
@@ -29,8 +28,9 @@ class XcToolWindowFactory : ToolWindowFactory, DumbAware {
         toolWindow: ToolWindow,
     ) {
         val panel = XcToolWindowPanel(project)
-        val content = ContentFactory.getInstance().createContent(panel, "", false)
-        toolWindow.contentManager.addContent(content)
+        val contentManager = toolWindow.contentManager
+        val content = contentManager.factory.createContent(panel, "", false)
+        contentManager.addContent(content)
     }
 }
 

@@ -23,6 +23,7 @@
         <toolWindow id="xc Tasks"
                     anchor="right"
                     icon="AllIcons.Actions.Execute"
-                    factoryClass="ing.brunn.xcintellij.toolWindow.XcToolWindowFactory"/>
+                    factoryClass="ing.brunn.xcintellij.toolWindow.XcToolWindowFactory"
+                    doNotActivateOnStart="true"/>
     </extensions>
 </idea-plugin>
