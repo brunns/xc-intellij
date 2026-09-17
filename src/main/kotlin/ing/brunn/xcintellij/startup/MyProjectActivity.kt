@@ -1,4 +1,4 @@
-package com.github.brunns.xcintellij.startup
+package ing.brunn.xcintellij.startup
 
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project

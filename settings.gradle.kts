@@ -1,6 +1,6 @@
 import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
 
-rootProject.name = "IntelliJ Platform Plugin Template"
+rootProject.name = "IntelliJ plugin to allow running xc tasks"
 
 pluginManagement {
     plugins {

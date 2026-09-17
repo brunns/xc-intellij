@@ -1,7 +1,5 @@
-package com.github.brunns.xcintellij.settings
+package ing.brunn.xcintellij.services
 
-import com.github.brunns.xcintellij.services.XcSettingsConfigurable
-import com.github.brunns.xcintellij.services.XcSettingsState
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 
 class XcSettingsConfigurableTest : BasePlatformTestCase() {

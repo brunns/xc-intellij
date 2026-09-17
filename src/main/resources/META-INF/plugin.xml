@@ -4,8 +4,7 @@
     <name>XC Tasks</name>
     <vendor>brunns</vendor>
     <description><![CDATA[
-        <p><b>xc-intellij</b> is a repository that provides a pure template to make it easier to create a new plugin project.</p>
-        <p>The main goal of this template is to speed up the setup phase of plugin development for both new and experienced developers by preconfiguring the project scaffold and CI, linking to the proper documentation pages, and keeping everything organized.</p>
+        <p>IntelliJ plugin to allow running xc tasks</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
@@ -13,16 +12,15 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.brunns.xcintellij.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.brunns.xcintellij.startup.MyProjectActivity" />
-
-        <applicationService serviceImplementation="com.github.brunns.xcintellij.services.XcSettingsState"/>
-
-        <!-- Settings Menu Entry -->
         <applicationConfigurable
                 parentId="tools"
-                instance="com.github.brunns.xcintellij.services.XcSettingsConfigurable"
-                id="com.github.brunns.xcintellij.services.XcSettingsConfigurable"
+                instance="ing.brunn.xcintellij.services.XcSettingsConfigurable"
+                id="ing.brunn.xcintellij.services.XcSettingsConfigurable"
                 displayName="xc Task Runner"/>
+
+        <toolWindow id="xc Tasks"
+                    anchor="right"
+                    icon="AllIcons.Actions.Execute"
+                    factoryClass="ing.brunn.xcintellij.toolWindow.XcToolWindowFactory"/>
     </extensions>
 </idea-plugin>

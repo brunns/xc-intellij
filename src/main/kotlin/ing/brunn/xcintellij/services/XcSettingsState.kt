@@ -1,4 +1,4 @@
-package com.github.brunns.xcintellij.services
+package ing.brunn.xcintellij.services
 
 import com.intellij.openapi.components.*
 import com.intellij.util.xmlb.XmlSerializerUtil
