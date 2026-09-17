@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.PropertyKey
 
 @NonNls
-private const val BUNDLE = "messages.MyBundle"
+private const val BUNDLE = "messages.XcTaskBundle"
 
-object MyBundle : DynamicBundle(BUNDLE) {
+object XcTaskBundle : DynamicBundle(BUNDLE) {
     operator fun get(
         @PropertyKey(resourceBundle = BUNDLE) key: String,
         vararg params: Any,
