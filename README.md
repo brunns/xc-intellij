@@ -15,7 +15,7 @@ RunDeps: async
 ### test
 
 ```sh
-./gradlew test 
+./gradlew test
 ```
 
 ### lint
