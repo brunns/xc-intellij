@@ -13,6 +13,7 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.JBList
 import com.intellij.ui.components.JBScrollPane
 import com.intellij.ui.content.ContentFactory
+import ing.brunn.xcintellij.services.XcTaskRunnerService
 import ing.brunn.xcintellij.services.XcTaskService
 import java.awt.BorderLayout
 import java.awt.event.MouseAdapter
@@ -76,8 +77,7 @@ class XcToolWindowPanel(private val project: Project) : JPanel(BorderLayout()) {
     }
 
     private fun onTaskDoubleClicked(taskName: String) {
-        // Step 3 (Task Execution) will connect here
-        println("Triggered task execution: $taskName")
+        project.getService(XcTaskRunnerService::class.java)?.runTask(taskName)
     }
 
     private fun createToolbar(): JComponent {
