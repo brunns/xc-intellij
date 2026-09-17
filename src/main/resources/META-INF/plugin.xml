@@ -2,9 +2,9 @@
 <idea-plugin>
     <id>com.github.brunns.xcintellij</id>
     <name>XC Tasks</name>
-    <vendor>brunns</vendor>
+    <vendor>Simon Brunning</vendor>
     <description><![CDATA[
-        <p>IntelliJ plugin to allow running xc tasks</p>
+        <p>IntelliJ plugin to allow running <a href="https://xcfile.dev/">xc</a> tasks</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
