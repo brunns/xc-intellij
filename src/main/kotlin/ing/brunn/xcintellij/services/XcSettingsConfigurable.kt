@@ -14,9 +14,10 @@ class XcSettingsConfigurable : Configurable {
     override fun getDisplayName(): String = "xc Task Runner"
 
     override fun createComponent(): JComponent {
-        val descriptor = FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor()
-            .withTitle("Select xc Executable")
-            .withDescription("Choose the path to the xc binary")
+        val descriptor =
+            FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor()
+                .withTitle("Select xc Executable")
+                .withDescription("Choose the path to the xc binary")
 
         pathField.addBrowseFolderListener(TextBrowseFolderListener(descriptor))
         pathField.text = settings.xcExecutablePath

@@ -3,7 +3,6 @@ package ing.brunn.xcintellij.services
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 
 class XcSettingsConfigurableTest : BasePlatformTestCase() {
-
     private lateinit var configurable: XcSettingsConfigurable
 
     override fun setUp() {

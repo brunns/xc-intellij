@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.intellij.platform")
     id("org.jetbrains.changelog")
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
 }
 
 dependencies {
@@ -14,4 +15,8 @@ dependencies {
         intellijIdea("2025.2.6.2")
         testFramework(TestFrameworkType.Platform)
     }
+}
+
+tasks.named("compileKotlin") {
+    dependsOn("ktlintFormat")
 }

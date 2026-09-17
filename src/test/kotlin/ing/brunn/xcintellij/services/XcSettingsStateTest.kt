@@ -3,7 +3,6 @@ package ing.brunn.xcintellij.services
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 
 class XcSettingsStateTest : BasePlatformTestCase() {
-
     fun testDefaultExecutablePathIsXc() {
         val settings = XcSettingsState.instance
         assertEquals("xc", settings.xcExecutablePath)

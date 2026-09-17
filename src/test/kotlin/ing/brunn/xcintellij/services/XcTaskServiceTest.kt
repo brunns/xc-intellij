@@ -3,7 +3,6 @@ package ing.brunn.xcintellij.services
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 
 class XcTaskServiceTest : BasePlatformTestCase() {
-
     fun testTaskServiceInstantiation() {
         val service = project.getService(XcTaskService::class.java)
         assertNotNull(service)

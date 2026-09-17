@@ -6,15 +6,17 @@ import com.intellij.execution.process.ProcessHandlerFactory
 import com.intellij.execution.process.ProcessTerminatedListener
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.components.Service
+import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
 import java.io.File
-import com.intellij.openapi.diagnostic.thisLogger
 
 @Service(Service.Level.PROJECT)
 class XcTaskRunnerService(private val project: Project) {
-
     @JvmOverloads
-    fun runTask(taskName: String, parentDisposable: Disposable = project) {
+    fun runTask(
+        taskName: String,
+        parentDisposable: Disposable = project,
+    ) {
         val basePath = project.basePath ?: return
         val workDir = File(basePath)
         if (!workDir.exists()) return
@@ -22,11 +24,13 @@ class XcTaskRunnerService(private val project: Project) {
         val xcExecutable = XcSettingsState.instance.xcExecutablePath
 
         try {
-            val commandLine = GeneralCommandLine(xcExecutable, taskName)
-                .withWorkDirectory(workDir)
+            val commandLine =
+                GeneralCommandLine(xcExecutable, taskName)
+                    .withWorkDirectory(workDir)
 
-            val processHandler = ProcessHandlerFactory.getInstance()
-                .createColoredProcessHandler(commandLine)
+            val processHandler =
+                ProcessHandlerFactory.getInstance()
+                    .createColoredProcessHandler(commandLine)
 
             ProcessTerminatedListener.attach(processHandler)
 

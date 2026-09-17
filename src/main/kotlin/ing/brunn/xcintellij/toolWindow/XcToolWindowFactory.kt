@@ -24,8 +24,10 @@ import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
 class XcToolWindowFactory : ToolWindowFactory, DumbAware {
-
-    override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
+    override fun createToolWindowContent(
+        project: Project,
+        toolWindow: ToolWindow,
+    ) {
         val panel = XcToolWindowPanel(project)
         val content = ContentFactory.getInstance().createContent(panel, "", false)
         toolWindow.contentManager.addContent(content)
@@ -42,16 +44,18 @@ class XcToolWindowPanel(private val project: Project) : JPanel(BorderLayout()) {
         add(scrollPane, BorderLayout.CENTER)
 
         // Setup double-click action listener
-        taskList.addMouseListener(object : MouseAdapter() {
-            override fun mouseClicked(e: MouseEvent) {
-                if (e.clickCount == 2) {
-                    val selectedTask = taskList.selectedValue
-                    if (selectedTask != null) {
-                        onTaskDoubleClicked(selectedTask)
+        taskList.addMouseListener(
+            object : MouseAdapter() {
+                override fun mouseClicked(e: MouseEvent) {
+                    if (e.clickCount == 2) {
+                        val selectedTask = taskList.selectedValue
+                        if (selectedTask != null) {
+                            onTaskDoubleClicked(selectedTask)
+                        }
                     }
                 }
-            }
-        })
+            },
+        )
 
         refreshTasks()
     }
@@ -81,13 +85,16 @@ class XcToolWindowPanel(private val project: Project) : JPanel(BorderLayout()) {
     }
 
     private fun createToolbar(): JComponent {
-        val actionGroup = DefaultActionGroup().apply {
-            add(object : AnAction("Refresh Tasks", "Reload tasks from README", AllIcons.Actions.Refresh) {
-                override fun actionPerformed(e: AnActionEvent) {
-                    refreshTasks()
-                }
-            })
-        }
+        val actionGroup =
+            DefaultActionGroup().apply {
+                add(
+                    object : AnAction("Refresh Tasks", "Reload tasks from README", AllIcons.Actions.Refresh) {
+                        override fun actionPerformed(e: AnActionEvent) {
+                            refreshTasks()
+                        }
+                    },
+                )
+            }
         val toolbar = ActionManager.getInstance().createActionToolbar("XcToolWindow", actionGroup, true)
         toolbar.targetComponent = this
         return toolbar.component

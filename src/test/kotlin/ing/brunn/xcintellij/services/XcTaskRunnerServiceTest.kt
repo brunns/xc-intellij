@@ -7,7 +7,6 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.ui.UIUtil
 
 class XcTaskRunnerServiceTest : BasePlatformTestCase() {
-
     override fun tearDown() {
         try {
             // Dispose any console view editors created by RunContentExecutor

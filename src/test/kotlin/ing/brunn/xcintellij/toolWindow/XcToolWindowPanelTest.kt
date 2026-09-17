@@ -5,7 +5,6 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.ui.UIUtil
 
 class XcToolWindowPanelTest : BasePlatformTestCase() {
-
     fun testToolWindowPanelComponentInitialization() {
         val panel = XcToolWindowPanel(project)
 

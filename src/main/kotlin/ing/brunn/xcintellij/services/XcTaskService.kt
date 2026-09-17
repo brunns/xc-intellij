@@ -8,13 +8,13 @@ import java.io.File
 
 @Service(Service.Level.PROJECT)
 class XcTaskService(private val project: Project) {
-
     fun fetchTasks(): List<String> {
         val basePath = project.basePath ?: return emptyList()
         val xcExecutable = XcSettingsState.instance.xcExecutablePath
 
-        val commandLine = GeneralCommandLine(xcExecutable, "-short")
-            .withWorkDirectory(File(basePath))
+        val commandLine =
+            GeneralCommandLine(xcExecutable, "-short")
+                .withWorkDirectory(File(basePath))
 
         return try {
             val handler = CapturingProcessHandler(commandLine)
