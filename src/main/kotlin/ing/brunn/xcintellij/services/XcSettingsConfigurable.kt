@@ -15,7 +15,8 @@ class XcSettingsConfigurable : Configurable {
 
     override fun createComponent(): JComponent {
         val descriptor =
-            FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor()
+            FileChooserDescriptorFactory
+                .createSingleFileNoJarsDescriptor()
                 .withTitle("Select xc Executable")
                 .withDescription("Choose the path to the xc binary")
 

@@ -8,14 +8,13 @@ import javax.swing.JComponent
 class XcRunConfigurationSettingsEditor : SettingsEditor<XcRunConfiguration>() {
     internal val taskNameField = JBTextField()
 
-    override fun createEditor(): JComponent {
-        return panel {
+    override fun createEditor(): JComponent =
+        panel {
             row("Task Name:") {
                 cell(taskNameField)
                     .comment("Name of the xc task defined in your README.md")
             }
         }
-    }
 
     override fun resetEditorFrom(configuration: XcRunConfiguration) {
         taskNameField.text = configuration.taskName

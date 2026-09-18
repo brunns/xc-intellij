@@ -12,7 +12,9 @@ import ing.brunn.xcintellij.run.XcConfigurationType
 import ing.brunn.xcintellij.run.XcRunConfiguration
 
 @Service(Service.Level.PROJECT)
-class XcTaskRunnerService(private val project: Project) {
+class XcTaskRunnerService(
+    private val project: Project,
+) {
     @JvmOverloads
     fun runTask(
         taskName: String,

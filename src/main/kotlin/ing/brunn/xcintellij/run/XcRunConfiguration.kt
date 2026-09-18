@@ -26,9 +26,7 @@ class XcRunConfiguration(
     factory: ConfigurationFactory,
     name: String,
 ) : LocatableConfigurationBase<XcRunConfigurationOptions>(project, factory, name) {
-    override fun getOptions(): XcRunConfigurationOptions {
-        return super.getOptions() as XcRunConfigurationOptions
-    }
+    override fun getOptions(): XcRunConfigurationOptions = super.getOptions() as XcRunConfigurationOptions
 
     var taskName: String
         get() = options.taskName ?: ""
@@ -36,9 +34,7 @@ class XcRunConfiguration(
             options.taskName = value
         }
 
-    override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> {
-        return XcRunConfigurationSettingsEditor()
-    }
+    override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> = XcRunConfigurationSettingsEditor()
 
     override fun getState(
         executor: Executor,
@@ -59,7 +55,8 @@ class XcRunConfiguration(
                         .withWorkDirectory(workDir)
 
                 val processHandler =
-                    ProcessHandlerFactory.getInstance()
+                    ProcessHandlerFactory
+                        .getInstance()
                         .createColoredProcessHandler(commandLine)
 
                 ProcessTerminatedListener.attach(processHandler)

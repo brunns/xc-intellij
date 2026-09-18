@@ -22,7 +22,9 @@ import javax.swing.JComponent
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class XcToolWindowFactory : ToolWindowFactory, DumbAware {
+class XcToolWindowFactory :
+    ToolWindowFactory,
+    DumbAware {
     override fun createToolWindowContent(
         project: Project,
         toolWindow: ToolWindow,
@@ -34,7 +36,9 @@ class XcToolWindowFactory : ToolWindowFactory, DumbAware {
     }
 }
 
-class XcToolWindowPanel(private val project: Project) : JPanel(BorderLayout()) {
+class XcToolWindowPanel(
+    private val project: Project,
+) : JPanel(BorderLayout()) {
     private val listModel = DefaultListModel<String>()
     internal val taskList = JBList(listModel)
 
