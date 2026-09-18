@@ -29,6 +29,7 @@ class XcTaskRunnerService(private val project: Project) {
             runManager.findConfigurationByName(configName)
                 ?: runManager.createConfiguration(configName, factory).also { newSettings ->
                     (newSettings.configuration as XcRunConfiguration).taskName = taskName
+                    newSettings.isTemporary = false
                     runManager.addConfiguration(newSettings)
                 }
 
