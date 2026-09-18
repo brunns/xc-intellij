@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "2.4.20"
     id("org.jetbrains.intellij.platform")
     id("org.jetbrains.changelog") version "2.5.0"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
+    id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
 dependencies {
