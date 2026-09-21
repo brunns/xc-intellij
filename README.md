@@ -2,7 +2,7 @@
 
 IntelliJ plugin to allow running [xc](https://xcfile.dev/) tasks.
 
-Plugin based on the [IntelliJ Platform Plugin Template][https://github.com/JetBrains/intellij-platform-plugin-template].
+Plugin based on the [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template).
 
 ## Tasks
 
