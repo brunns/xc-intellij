@@ -8,8 +8,16 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    assignees:
+      - "brunns"
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
+    commit-message:
+      prefix: "chore(ci)"
+    assignees:
+      - "brunns"
