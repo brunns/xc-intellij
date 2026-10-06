@@ -3,21 +3,57 @@
 
 version: 2
 updates:
-  # Maintain dependencies for Gradle dependencies
+  # Production Gradle dependencies
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
       interval: "weekly"
     commit-message:
-      prefix: "chore(deps)"
+      prefix: "chore (deps)"
+    allow:
+      - dependency-type: "production"
+    labels:
+      - "dependencies"
+      - "production"
+      - "gradle"
+    cooldown:
+      default-days: 7
     assignees:
       - "brunns"
-  # Maintain dependencies for GitHub Actions
+
+  # Development & Test Gradle dependencies
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore (dev-deps)"
+    allow:
+      - dependency-type: "development"
+    labels:
+      - "dependencies"
+      - "development"
+      - "gradle"
+    cooldown:
+      default-days: 7
+    groups:
+      dev-dependencies:
+        patterns:
+          - "*"
+    assignees:
+      - "brunns"
+
+  # GitHub Actions dependencies
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     commit-message:
-      prefix: "chore(ci)"
+      prefix: "chore (gha)"
+    labels:
+      - "gha"
+      - "ci"
     assignees:
       - "brunns"
+    cooldown:
+      default-days: 7
